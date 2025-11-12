@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Mahasiswa2 extends Model
+{
+    use HasFactory;
+
+    protected $table = 'mahasiswa2'; 
+    protected $fillable = ['nama', 'nim', 'prodi', 'semester', 'kelas', 'alamat']; 
+}
