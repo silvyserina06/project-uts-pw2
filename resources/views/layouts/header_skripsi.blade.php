@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark sticky-top shadow-sm">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Pengajuan Judul Skripsi</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <span class="navbar-brand mb-0 h1">Sistem Pengajuan Judul Skripsi</span>
+    <div>
+      <a href="#" class="btn btn-outline-light btn-sm">Logout</a>
+    </div>
   </div>
 </nav>
