@@ -5,9 +5,6 @@
     <div class="card shadow-sm border-0">
         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
             <h4 class="mb-0">📄 Daftar Pengajuan Judul Skripsi</h4>
-            <a href="{{ route('pengajuan.create') }}" class="btn btn-light btn-sm">
-                + Tambah Pengajuan
-            </a>
         </div>
 
         <div class="card-body">

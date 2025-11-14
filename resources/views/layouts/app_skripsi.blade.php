@@ -126,6 +126,37 @@
       font-size: 22px;
       cursor: pointer;
     }
+
+    @media print {
+        /* Hilangkan elemen yang tidak perlu saat print */
+        .sidebar,
+        .main-header,
+        .btn,
+        form,
+        #toggleSidebar {
+            display: none !important;
+        }
+
+        body {
+            background: white !important;
+        }
+
+        .main-content {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        table {
+            font-size: 12px;
+        }
+
+        /* Biar judul laporan muncul di print */
+        .print-header {
+            display: block !important;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    }
   </style>
 </head>
 <body>
@@ -136,10 +167,19 @@
     <a href="{{ route('dashboard') }}" class="{{ request()->is('dashboard') ? 'active' : '' }}">
       <i class="bi bi-speedometer2"></i> <span>Dashboard</span>
     </a>
+
     <a href="{{ route('pengajuan.index') }}" class="{{ request()->is('pengajuan*') ? 'active' : '' }}">
       <i class="bi bi-journal-text"></i> <span>Pengajuan Judul</span>
     </a>
-    <a href="#"><i class="bi bi-person-lines-fill"></i> <span>Mahasiswa</span></a>
+
+    <a href="{{ route('mahasiswa.index') }}" class="{{ request()->is('admin/mahasiswa*') ? 'active' : '' }}">
+    <i class="bi bi-person-lines-fill"></i> <span>Data Mahasiswa</span>
+    </a>
+
+    <a href="{{ route('laporan.index') }}" class="{{ request()->is('laporan') ? 'active' : '' }}">
+    <i class="bi bi-file-earmark-text"></i> <span>Laporan</span>
+    </a>
+
     <a href="#"><i class="bi bi-gear"></i> <span>Pengaturan</span></a>
   </div>
 

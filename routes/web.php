@@ -7,6 +7,8 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\PdamController;
 use App\Http\Controllers\PengajuanSkripsiController;
 use App\Http\Controllers\AdminSkripsiController;
+use App\Http\Controllers\MahasiswaSkripsiController;
+use App\Http\Controllers\LaporanSkripsiController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,11 +31,16 @@ Route::get('/dosen-simpan',[DosenController::class,'store'])->name('dosenSimpan'
 Route::get('/pdam', [PdamController::class, 'index']);
 Route::post('/pdam/hitung', [PdamController::class, 'hitung'])->name('pdam.hitung');
 
-Route::get('/dashboard', [AdminSkripsiController::class, 'index'])->name('dashboard');
-Route::get('/pengajuan-skripsi', [PengajuanSkripsiController::class, 'index'])->name('pengajuan.index');
-Route::get('/pengajuan-skripsi/create', [PengajuanSkripsiController::class, 'create'])->name('pengajuan.create');
-Route::post('/pengajuan-skripsi', [PengajuanSkripsiController::class, 'store'])->name('pengajuan_skripsi.store');
-Route::get('/pengajuan-skripsi/{id}', [PengajuanSkripsiController::class, 'show'])->name('pengajuan_skripsi.show');
-Route::get('/pengajuan-skripsi/{id}/edit', [PengajuanSkripsiController::class, 'edit'])->name('pengajuan_skripsi.edit');
-Route::put('/pengajuan-skripsi/{id}', [PengajuanSkripsiController::class, 'update'])->name('pengajuan_skripsi.update');
+Route::get('/admin/dashboard', [AdminSkripsiController::class, 'index'])->name('dashboard');
+Route::get('/admin/pengajuan-skripsi', [PengajuanSkripsiController::class, 'index'])->name('pengajuan.index');
+Route::get('/admin/pengajuan-skripsi/{id}', [PengajuanSkripsiController::class, 'show'])->name('pengajuan_skripsi.show');
+Route::get('/admin/pengajuan-skripsi/{id}/edit', [PengajuanSkripsiController::class, 'edit'])->name('pengajuan_skripsi.edit');
+Route::put('/admin/pengajuan-skripsi/{id}', [PengajuanSkripsiController::class, 'update'])->name('pengajuan_skripsi.update');
 Route::delete('/pengajuan-skripsi/{id}', [PengajuanSkripsiController::class, 'destroy'])->name('pengajuan_skripsi.destroy');
+
+Route::get('/admin/mahasiswa', [MahasiswaSkripsiController::class, 'index'])->name('mahasiswa.index');
+Route::get('/admin/mahasiswa/{id}/edit', [MahasiswaSkripsiController::class, 'edit'])->name('mahasiswa.edit');
+Route::put('/admin/mahasiswa/{id}', [MahasiswaSkripsiController::class, 'update'])->name('mahasiswa.update');
+Route::delete('/admin/mahasiswa/{id}', [MahasiswaSkripsiController::class, 'destroy'])->name('mahasiswa.destroy');
+
+Route::get('/admin/laporan', [LaporanSkripsiController::class, 'index'])->name('laporan.index');
