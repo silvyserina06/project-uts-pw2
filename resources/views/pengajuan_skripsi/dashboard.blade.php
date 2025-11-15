@@ -3,6 +3,31 @@
 @section('title', 'Dashboard')
 
 @section('content')
+ <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Skripsi</title>
+
+    <!-- Link ke CSS custom -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <h2> Menu</h2>
+            <ul>
+                <li><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-file-alt"></i> Pengajuan Skripsi</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Data Mahasiswa</a></li>
+                <li><a href="#"><i class="fas fa-chart-line"></i> Laporan</a></li>
+            </ul>
+        </div>
+
+<body>
+  
   <h3 class="fw-bold mb-4">Dashboard</h3>
 
   <div class="row">

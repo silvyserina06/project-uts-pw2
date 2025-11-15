@@ -6,6 +6,8 @@ use App\Http\Controllers\Mahasiswa2Controller;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\PdamController;
 use App\Http\Controllers\PengajuanSkripsiController;
+use App\Http\Controllers\MahasiswaSkripsiDashboardController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,3 +38,9 @@ Route::get('/pengajuan-skripsi', [PengajuanSkripsiController::class, 'index'])->
 Route::get('/pengajuan-skripsi/create', [PengajuanSkripsiController::class, 'create'])->name('pengajuan.create');
 Route::post('/pengajuan-skripsi', [PengajuanSkripsiController::class, 'store'])->name('pengajuan_skripsi.store');
 Route::get('/pengajuan-skripsi/{id}', [PengajuanSkripsiController::class, 'show'])->name('pengajuan_skripsi.show');
+
+Route::get('/dashboard', [MahasiswaSkripsiDashboardController::class, 'index'])->name('skripsi.dashboard');
+Route::get('/pengajuan', [PengajuanSkripsiController::class, 'create'])->name('skripsi.pengajuan.create');
+Route::post('/pengajuan', [PengajuanSkripsiController::class, 'store'])->name('skripsi.pengajuan.store');
+Route::get('/riwayat', [PengajuanSkripsiController::class, 'index'])->name('skripsi.pengajuan.index');
+Route::get('/profil', [MahasiswaSkripsiDashboardController::class, 'profil'])->name('skripsi.profil');
