@@ -43,6 +43,12 @@
             @endif
             </div>
 
+         <div class="d-flex justify-content-start mb-2">
+            <a href="{{ route('laporan.cetak', ['start' => $start, 'end' => $end]) }}"
+                class="btn btn-success btn-sm">
+                <i class="bi bi-file-earmark-pdf-fill"></i> Cetak PDF
+            </a>
+        </div>
         <div class="table-responsive">
             <table class="table table-striped align-middle">
                 <thead class="table-dark">
