@@ -5,8 +5,15 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\Mahasiswa2Controller;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\PdamController;
+
 use App\Http\Controllers\PengajuanSkripsiController;
 use App\Http\Controllers\MahasiswaSkripsiDashboardController;
+
+
+use App\Http\Controllers\AdminSkripsiController;
+use App\Http\Controllers\MahasiswaSkripsiController;
+use App\Http\Controllers\LaporanSkripsiController;
+use App\Http\Controllers\MahasiswaPortalSkripsiController;
 
 
 Route::get('/', function () {
@@ -14,10 +21,6 @@ Route::get('/', function () {
 });
 Route::get('/mhs', function () {
     return view('mhs');
-
-});
-Route::get('/dashboard', function () {
-    return view('pengajuan_skripsi.dashboard');
 });
 
 Route::get('/mhs-baru', [MahasiswaController::class, 'index']);
@@ -44,3 +47,32 @@ Route::get('/pengajuan', [PengajuanSkripsiController::class, 'create'])->name('s
 Route::post('/pengajuan', [PengajuanSkripsiController::class, 'store'])->name('skripsi.pengajuan.store');
 Route::get('/riwayat', [PengajuanSkripsiController::class, 'index'])->name('skripsi.pengajuan.index');
 Route::get('/profil', [MahasiswaSkripsiDashboardController::class, 'profil'])->name('skripsi.profil');
+Route::get('/admin/dashboard', [AdminSkripsiController::class, 'index'])->name('dashboard');
+Route::get('/admin/pengajuan-skripsi', [PengajuanSkripsiController::class, 'index'])->name('pengajuan.index');
+Route::get('/admin/pengajuan-skripsi/{id}', [PengajuanSkripsiController::class, 'show'])->name('pengajuan_skripsi.show');
+Route::get('/admin/pengajuan-skripsi/{id}/edit', [PengajuanSkripsiController::class, 'edit'])->name('pengajuan_skripsi.edit');
+Route::put('/admin/pengajuan-skripsi/{id}', [PengajuanSkripsiController::class, 'update'])->name('pengajuan_skripsi.update');
+Route::delete('/pengajuan-skripsi/{id}', [PengajuanSkripsiController::class, 'destroy'])->name('pengajuan_skripsi.destroy');
+
+Route::get('/admin/mahasiswa', [MahasiswaSkripsiController::class, 'index'])->name('mahasiswa.index');
+Route::get('/admin/mahasiswa/{id}/edit', [MahasiswaSkripsiController::class, 'edit'])->name('mahasiswa.edit');
+Route::put('/admin/mahasiswa/{id}', [MahasiswaSkripsiController::class, 'update'])->name('mahasiswa.update');
+Route::delete('/admin/mahasiswa/{id}', [MahasiswaSkripsiController::class, 'destroy'])->name('mahasiswa.destroy');
+
+Route::get('/admin/laporan', [LaporanSkripsiController::class, 'index'])->name('laporan.index');
+Route::get('/admin/laporan-cetak', [LaporanSkripsiController::class, 'cetakPDF'])->name('laporan.cetak');
+
+Route::get('/login', function () {
+    return 'Halaman login belum dibuat';
+})->name('login');
+
+Route::middleware([])->group(function () {
+
+    Route::get('/mahasiswa/dashboard', [MahasiswaPortalSkripsiController::class, 'dashboard'])->name('mahasiswa.dashboard');
+
+    Route::get('/mahasiswa/riwayat', [MahasiswaPortalSkripsiController::class, 'riwayatskripsi'])->name('mahasiswa.riwayat');
+
+    Route::get('/mahasiswa/ajukan', [MahasiswaPortalSkripsiController::class, 'ajukanForm'])->name('mahasiswa.ajukan.form');
+
+    Route::post('/mahasiswa/ajukan', [MahasiswaPortalSkripsiController::class, 'ajukanStore'])->name('mahasiswa.ajukan.store');
+});

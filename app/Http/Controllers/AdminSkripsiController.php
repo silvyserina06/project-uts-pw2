@@ -2,35 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PengajuanSkripsi;
 use Illuminate\Http\Request;
+use App\Models\PengajuanSkripsi;
 
 class AdminSkripsiController extends Controller
 {
-    // Tampilkan semua pengajuan
     public function index()
     {
-        $pengajuan = PengajuanSkripsi::with('mahasiswa')->latest()->get();
-        return view('admin_skripsi.index', compact('pengajuan'));
-    }
+        $total = PengajuanSkripsi::count();
+        $disetujui = PengajuanSkripsi::where('status', 'Disetujui')->count();
+        $ditolak = PengajuanSkripsi::where('status', 'Ditolak')->count();
 
-    // Detail pengajuan
-    public function show($id)
-    {
-        $pengajuan = PengajuanSkripsi::with('mahasiswa')->findOrFail($id);
-        return view('admin_skripsi.show', compact('pengajuan'));
-    }
+        $pengajuanTerbaru = PengajuanSkripsi::latest()->take(5)->get();
 
-    // Update status pengajuan (setuju/tolak)
-    public function updateStatus(Request $request, $id)
-    {
-        $request->validate([
-            'status' => 'required|in:Menunggu,Disetujui,Ditolak',
-        ]);
-
-        $pengajuan = PengajuanSkripsi::findOrFail($id);
-        $pengajuan->update(['status' => $request->status]);
-
-        return redirect()->route('admin.pengajuan.index')->with('success', 'Status pengajuan diperbarui!');
+        return view('pengajuan_skripsi.dashboard', compact('total', 'disetujui', 'ditolak', 'pengajuanTerbaru'));
     }
 }
