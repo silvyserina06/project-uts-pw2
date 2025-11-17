@@ -1,34 +1,70 @@
-@extends('mahasiswa.layouts.app_mhsskripsi')
+@extends('layouts.app_mhsskripsi')
 
 @section('title', 'Dashboard Mahasiswa')
 
 @section('content')
 
-<h3 class="mb-4">Selamat Datang di Portal Skripsi</h3>
+{{-- NAVBAR ATAS --}}
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">
+            Dashboard Mahasiswa
+        </a>
 
-<div class="row">
-
-    <div class="col-md-6 mb-3">
-        <div class="card p-3 shadow-sm">
-            <h5>Ajukan Judul Skripsi</h5>
-            <p>Silakan ajukan judul skripsi sesuai ketentuan program studi.</p>
-            <a href="{{ route('mahasiswa.ajukan') }}" class="btn btn-primary btn-sm">Ajukan Sekarang</a>
-        </div>
+      
     </div>
+</nav>
 
-    <div class="col-md-6 mb-3">
-        <div class="card p-3 shadow-sm">
-            <h5>Riwayat Pengajuan</h5>
-            <p>Lihat status pengajuan judul skripsi anda sebelumnya.</p>
-            <a href="{{ route('mahasiswa.riwayat') }}" class="btn btn-secondary btn-sm">Lihat Riwayat</a>
-        </div>
+{{-- HERO SECTION --}}
+<div class="container mt-4">
+    <div class="p-4 rounded shadow-sm text-white" 
+         style="background: linear-gradient(45deg, #ff8a00, #ffb547);">
+
+        <h3 class="fw-bold">Selamat Datang, {{ auth()->user()->nama ?? 'Mahasiswa' }}!</h3>
+        <p class="mb-0">
+            Pantau dan ajukan proses skripsi dengan mudah melalui dashboard ini.
+        </p>
     </div>
-
 </div>
 
-<div class="card p-4 mt-4 shadow-sm">
-    <h5>Informasi Terbaru</h5>
-    <p class="text-muted">Belum ada informasi terbaru.</p>
+{{-- MENU CARD --}}
+<div class="container mt-4">
+    <div class="row g-3">
+
+        {{-- Ajukan Judul Skripsi --}}
+        <div class="col-md-4">
+            <div class="card shadow-sm p-3 h-100">
+                <h5 class="fw-bold">Ajukan Judul Skripsi</h5>
+                <p>Ajukan judul skripsi baru untuk diproses oleh admin.</p>
+                <a href="{{ route('mahasiswa.skripsi.tambah') }}" class="btn btn-primary">
+                    Ajukan
+                </a>
+            </div>
+        </div>
+
+        {{-- Riwayat Pengajuan --}}
+        <div class="col-md-4">
+            <div class="card shadow-sm p-3 h-100">
+                <h5 class="fw-bold">Riwayat Pengajuan</h5>
+                <p>Lihat status pengajuan skripsi kamu: pending, diterima, atau ditolak.</p>
+                <a href="{{ route('mahasiswa.skripsi.riwayat') }}" class="btn btn-warning">
+                    Lihat Riwayat
+                </a>
+            </div>
+        </div>
+
+        {{-- Profil Mahasiswa --}}
+        <div class="col-md-4">
+            <div class="card shadow-sm p-3 h-100">
+                <h5 class="fw-bold">Profil Mahasiswa</h5>
+                <p>Informasi pribadi seperti nama, NIM, prodi, dan data lainnya.</p>
+                <a href="#" class="btn btn-secondary">
+                    Lihat Profil
+                </a>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 @endsection

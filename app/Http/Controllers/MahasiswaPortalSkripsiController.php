@@ -3,54 +3,41 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\PengajuanSkripsi;
 
 class MahasiswaPortalSkripsiController extends Controller
 {
-    // Dashboard mahasiswa
+    public function storePengajuan(Request $request)
+{
+    $request->validate([
+        'judul' => 'required|string|max:255',
+        'deskripsi' => 'nullable|string',
+    ]);
+
+    PengajuanSkripsi::create([
+        'mahasiswa_id' => auth()->user()->id, 
+        'judul' => $request->judul,
+        'deskripsi' => $request->deskripsi,
+        'status' => 'Pending'
+    ]);
+
+    return redirect()->route('mhs.status')->with('success', 'Pengajuan berhasil dikirim!');
+}
+    // DASHBOARD
     public function dashboard()
-    {
-        $id = auth()->user()->id;
+{
+    return view('pengajuan_skripsi.mahasiswa.dashboard');
+}
 
-        $total = PengajuanSkripsi::where('mahasiswa_id', $id)->count();
-        $disetujui = PengajuanSkripsi::where('mahasiswa_id', $id)->where('status', 'Disetujui')->count();
-        $ditolak = PengajuanSkripsi::where('mahasiswa_id', $id)->where('status', 'Ditolak')->count();
+public function ajukanjudulskripsi()
+{
+    return view('pengajuan_skripsi.mahasiswa.ajukanjudulskripsi');
+}
 
-        return view('pengajuan_skripsi.mahasiswa.dashboard', compact('total', 'disetujui', 'ditolak'));
-    }
+public function status()
+{
+    $pengajuan = \App\Models\PengajuanSkripsi::where('mahasiswa_id', 1)->get();
+    // sementara pakai ID 1 karena login belum ada
 
-    // Riwayat pengajuan
-    public function riwayat()
-    {
-        $riwayat = PengajuanSkripsi::where('mahasiswa_id', auth()->user()->id)
-                    ->orderBy('created_at', 'desc')
-                    ->get();
-
-        return view('pengajuan_skripsi.mahasiswa.riwayatskripsi', compact('riwayat'));
-    }
-
-    // Form ajukan judul
-    public function ajukanForm()
-    {
-        return view('pengajuan_skripsi.mahasiswa.ajukanskripsi');
-    }
-
-    // Submit pengajuan
-    public function ajukanStore(Request $request)
-    {
-        $request->validate([
-            'judul' => 'required',
-            'deskripsi' => 'required',
-        ]);
-
-        PengajuanSkripsi::create([
-            'mahasiswa_id' => auth()->user()->id,
-            'judul' => $request->judul,
-            'deskripsi' => $request->deskripsi,
-            'status' => 'Menunggu'
-        ]);
-
-        return redirect()->route('mahasiswa.riwayatskripsi')
-            ->with('success', 'Pengajuan berhasil dikirim!');
-    }
+    return view('pengajuan_skripsi.mahasiswa.status', compact('pengajuan'));
+}
 }

@@ -55,3 +55,4 @@ class PengajuanSkripsiController extends Controller
         return redirect()->route('pengajuan.index')->with('success', 'Data pengajuan berhasil dihapus.');
     }
 }
+    
