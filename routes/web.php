@@ -26,9 +26,9 @@ Route::get('/krs', [MahasiswaController::class, 'krsView']);
 Route::resource('mahasiswa2', Mahasiswa2Controller::class);
 Route::get('/mahasiswa_index', [Mahasiswa2Controller::class, 'index']);
 
-Route::get('/dosen',[DosenController::class,'index'])->name('dosenIndex');
-Route::get('/dosen-create',[DosenController::class,'create'])->name('dosenCreate');
-Route::get('/dosen-simpan',[DosenController::class,'store'])->name('dosenSimpan');
+Route::get('/dosen/create', [DosenController::class, 'create'])->name('dosenCreate');
+Route::post('/dosen/simpan', [DosenController::class, 'store'])->name('dosenSimpan');
+Route::get('/dosen', [DosenController::class, 'index'])->name('dosen');
 
 Route::get('/pdam', [PdamController::class, 'index']);
 Route::post('/pdam/hitung', [PdamController::class, 'hitung'])->name('pdam.hitung');
