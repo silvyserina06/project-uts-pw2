@@ -61,6 +61,18 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">
+                            Login
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}">
+                            Log out
+                        </a>
+                    </li>
+
                     {{-- Nama Mahasiswa --}}
                     <li class="nav-item ms-3 mt-1">
                         <span class="fw-bold">

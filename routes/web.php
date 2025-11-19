@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminSkripsiController;
 use App\Http\Controllers\MahasiswaSkripsiController;
 use App\Http\Controllers\LaporanSkripsiController;
 use App\Http\Controllers\MahasiswaPortalSkripsiController;
+use App\Http\Controllers\LoginController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -52,3 +53,6 @@ Route::get('/mhs/dashboard', [MahasiswaPortalSkripsiController::class, 'dashboar
 Route::get('/mhs/skripsi/tambah', [MahasiswaPortalSkripsiController::class, 'ajukanjudulskripsi'])->name('mahasiswa.skripsi.tambah');
 Route::post('/mhs/skripsi/tambah', [MahasiswaPortalSkripsiController::class, 'storePengajuan'])->name('mahasiswa.skripsi.store');
 Route::get('/mhs/skripsi/riwayat', [MahasiswaPortalSkripsiController::class, 'status'])->name('mahasiswa.skripsi.riwayat');
+
+Route::get('login', [LoginController::class, 'index'])->name('login');
+Route::get('/admin/dashboard', [AdminSkripsiController::class, 'index'])->name('logout');
