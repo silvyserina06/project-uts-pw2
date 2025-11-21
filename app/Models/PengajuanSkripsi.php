@@ -20,7 +20,6 @@ class PengajuanSkripsi extends Model
         'status'
     ];
 
-    // Relasi ke mahasiswa (jika kamu sudah punya tabel mhs_skripsi)
     public function mahasiswa()
     {
         return $this->belongsTo(MhsSkripsi::class, 'mahasiswa_id');

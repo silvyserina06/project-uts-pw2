@@ -1,29 +1,31 @@
-@extends('mahasiswa.layouts.app_mhsskripsi')
+@extends('layouts.app_mhsskripsi')
 
-@section('title', 'Ajukan Judul')
+@section('title', 'Ajukan Judul Skripsi')
 
 @section('content')
 
-<h3 class="mb-3">Ajukan Judul Skripsi</h3>
+<div class="container">
+    <div class="card shadow p-4">
+        <h4 class="fw-bold mb-3">Form Pengajuan Judul Skripsi</h4>
 
-<div class="card p-3">
+        {{-- Form --}}
+        <form action="{{ route('mahasiswa.skripsi.store') }}" method="POST">
+            @csrf
 
-    <form action="{{ route('mahasiswa.ajukan.store') }}" method="POST">
-        @csrf
+            <div class="mb-3">
+                <label class="form-label">Judul Skripsi</label>
+                <input type="text" name="judul" class="form-control" required>
+            </div>
 
-        <div class="mb-3">
-            <label class="form-label">Judul Skripsi</label>
-            <input type="text" name="judul" class="form-control" required>
-        </div>
+            <div class="mb-3">
+                <label class="form-label">Deskripsi Singkat</label>
+                <textarea name="deskripsi" rows="4" class="form-control" required></textarea>
+            </div>
 
-        <div class="mb-3">
-            <label class="form-label">Deskripsi</label>
-            <textarea name="deskripsi" class="form-control" rows="4" required></textarea>
-        </div>
+            <button class="btn btn-primary" type="submit">Kirim Pengajuan</button>
 
-        <button class="btn btn-primary">Kirim Pengajuan</button>
-    </form>
-
+        </form>
+    </div>
 </div>
 
 @endsection
