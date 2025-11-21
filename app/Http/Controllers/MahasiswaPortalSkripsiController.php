@@ -35,7 +35,8 @@ public function ajukanjudulskripsi()
 
 public function status()
 {
-    $pengajuan = \App\Models\PengajuanSkripsi::where('mahasiswa_id', 1)->get();
+    $pengajuan = App\Models\PengajuanSkripsi::where('mahasiswa_id', 1)->get();
+
     // sementara pakai ID 1 karena login belum ada
 
     return view('pengajuan_skripsi.mahasiswa.status', compact('pengajuan'));
