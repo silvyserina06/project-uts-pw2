@@ -55,4 +55,4 @@ Route::post('/mhs/skripsi/tambah', [MahasiswaPortalSkripsiController::class, 'st
 Route::get('/mhs/skripsi/riwayat', [MahasiswaPortalSkripsiController::class, 'status'])->name('mahasiswa.skripsi.riwayat');
 
 Route::get('login', [LoginController::class, 'index'])->name('login');
-Route::get('/admin/dashboard', [AdminSkripsiController::class, 'index'])->name('logout');
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
