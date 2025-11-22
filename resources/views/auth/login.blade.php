@@ -5,7 +5,7 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
-      <!-- NIM -->
+        <!-- NIM -->
         <div>
             <x-input-label for="nim" :value="('NIM')" />
             <x-text-input id="nim" class="block mt-1 w-full" type="text" name="nim" :value="old('nim')" required autofocus autocomplete="username" />
@@ -14,7 +14,7 @@
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input-label for="password" :value="('Password')" />
 
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"

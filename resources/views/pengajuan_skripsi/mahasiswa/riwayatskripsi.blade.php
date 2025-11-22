@@ -3,56 +3,42 @@
 @section('title', 'Riwayat Pengajuan')
 
 @section('content')
-<div class="container mt-4">
 
-    {{-- Judul Halaman --}}
-    <h3 class="mb-4">Riwayat Pengajuan Skripsi</h3>
+<h3 class="mb-3">Riwayat Pengajuan</h3>
 
-    {{-- Jika tidak ada data --}}
+<form method="GET" action="{{ route('mahasiswa.riwayat') }}" class="mb-3">
+    <input type="text" name="nim" placeholder="Masukkan NIM" class="form-control" required>
+    <button type="submit" class="btn btn-primary mt-2">Lihat Riwayat</button>
+</form>
+
+{{-- Hanya tampilkan hasil jika NIM sudah dimasukkan --}}
+@if(request()->has('nim'))
+
     @if($riwayat->isEmpty())
-        <div class="alert alert-info">
-            Kamu belum pernah mengajukan judul skripsi.
-        </div>
+        <p>Belum ada pengajuan untuk NIM ini.</p>
     @else
-
-    {{-- Tabel Riwayat --}}
-    <div class="card">
-        <div class="card-body p-0">
-            <table class="table table-striped mb-0">
-                <thead class="table-dark">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Judul</th>
+                    <th>Deskripsi</th>
+                    <th>Status</th>
+                    <th>Tanggal</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($riwayat as $p)
                     <tr>
-                        <th>No</th>
-                        <th>Judul Skripsi</th>
-                        <th>Deskripsi</th>
-                        <th>Status</th>
-                        <th>Tanggal</th>
+                        <td>{{ $p->judul }}</td>
+                        <td>{{ $p->deskripsi }}</td>
+                        <td>{{ $p->status }}</td>
+                        <td>{{ $p->created_at }}</td>
                     </tr>
-                </thead>
-
-                <tbody>
-                    @foreach($riwayat as $index => $item)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $item->judul }}</td>
-                        <td>{{ $item->deskripsi }}</td>
-                        <td>
-                            @if($item->status == 'diproses')
-                                <span class="badge bg-warning text-dark">Diproses</span>
-                            @elseif($item->status == 'disetujui')
-                                <span class="badge bg-success">Disetujui</span>
-                            @else
-                                <span class="badge bg-danger">Ditolak</span>
-                            @endif
-                        </td>
-                        <td>{{ $item->created_at->format('d M Y') }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-
+                @endforeach
+            </tbody>
+        </table>
     @endif
 
-</div>
+@endif
+
 @endsection

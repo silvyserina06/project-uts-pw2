@@ -28,7 +28,7 @@
     <nav class="navbar navbar-expand-lg bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ route('mahasiswa.dashboard') }}">
-                PORTAL SKRIPSI
+                PORTAL PENGAJUAN JUDUL SKRIPSI
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -44,7 +44,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('mahasiswa.ajukan') }}">Ajukan Judul</a>
+                        <a class="nav-link" href="{{ route('mahasiswa.ajukan.form') }}">Ajukan Judul</a>
                     </li>
 
                     <li class="nav-item">
@@ -66,7 +66,7 @@
     </div>
 
     <footer>
-        Portal Skripsi Mahasiswa © 2025
+        Portal Pengajuan Judul Skripsi Mahasiswa © 2025
     </footer>
 
 </body>

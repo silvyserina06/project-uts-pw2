@@ -48,9 +48,7 @@ Route::delete('/admin/mahasiswa/{id}', [MahasiswaSkripsiController::class, 'dest
 Route::get('/admin/laporan', [LaporanSkripsiController::class, 'index'])->name('laporan.index');
 Route::get('/admin/laporan-cetak', [LaporanSkripsiController::class, 'cetakPDF'])->name('laporan.cetak');
 
-Route::get('/login', function () {
-    return 'Halaman login belum dibuat';
-})->name('login');
+
 
 Route::middleware([])->group(function () {
 
@@ -60,5 +58,7 @@ Route::middleware([])->group(function () {
 
     Route::get('/mahasiswa/ajukan', [MahasiswaPortalSkripsiController::class, 'ajukanForm'])->name('mahasiswa.ajukan.form');
 
-    Route::post('/mahasiswa/ajukan', [MahasiswaPortalSkripsiController::class, 'ajukanStore'])->name('mahasiswa.ajukan.store');
+    Route::post('/mahasiswa/ajukan', [MahasiswaPortalSkripsiController::class, 'ajukanStore'])->name('mahasiswa.ajukanstore');
 });
+
+require __DIR__.'/auth.php';

@@ -1,10 +1,10 @@
-@extends('mahasiswa.layouts.app_mhsskripsi')
+@extends('layouts.app_mhsskripsi')
 
 @section('title', 'Dashboard Mahasiswa')
 
 @section('content')
 
-<h3 class="mb-4">Selamat Datang di Portal Skripsi</h3>
+<h3 class="mb-4">Selamat Datang di Portal Pengajuan Judul Skripsi</h3>
 
 <div class="row">
 
@@ -12,7 +12,7 @@
         <div class="card p-3 shadow-sm">
             <h5>Ajukan Judul Skripsi</h5>
             <p>Silakan ajukan judul skripsi sesuai ketentuan program studi.</p>
-            <a href="{{ route('mahasiswa.ajukan') }}" class="btn btn-primary btn-sm">Ajukan Sekarang</a>
+            <a href="{{ route('mahasiswa.ajukan.form') }}" class="btn btn-primary btn-sm">Ajukan Sekarang</a>
         </div>
     </div>
 
