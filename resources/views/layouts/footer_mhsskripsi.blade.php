@@ -1,7 +1,7 @@
-<footer class="text-center mt-5 py-3 bg-light border-top">
-    <small>
-        © 2025 Sistem Pengajuan Skripsi — Fakultas Komputer  
-        <br>
-        Contact: admin@kampus.ac.id
-    </small>
+<footer class="bg-dark text-white py-3 mt-5">
+    <div class="container text-center">
+        <small>
+            © {{ date('Y') }} Portal Pengajuan Judul Skripsi — Uin STS Jambi
+        </small>
+    </div>
 </footer>

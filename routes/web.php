@@ -6,11 +6,14 @@ use App\Http\Controllers\Mahasiswa2Controller;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\PdamController;
 
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\PengajuanSkripsiController;
 use App\Http\Controllers\AdminSkripsiController;
 use App\Http\Controllers\MahasiswaSkripsiController;
 use App\Http\Controllers\LaporanSkripsiController;
 use App\Http\Controllers\MahasiswaPortalSkripsiController;
+use App\Http\Controllers\LoginManualMhsSkripsiController;
+use App\Http\Controllers\LoginManualAdminSkripsiController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,6 +36,12 @@ Route::get('/dosen-simpan',[DosenController::class,'store'])->name('dosenSimpan'
 Route::get('/pdam', [PdamController::class, 'index']);
 Route::post('/pdam/hitung', [PdamController::class, 'hitung'])->name('pdam.hitung');
 
+// Halaman login admin
+Route::get('/login-admin', [LoginManualAdminSkripsiController::class, 'index'])->name('admin.login');
+Route::post('/login-admin', [LoginManualAdminSkripsiController::class, 'login'])->name('admin.login.post');
+Route::get('/admin/dashboard', [LoginManualAdminSkripsiController::class, 'dashboard'])->name('adm.dashboard');
+Route::post('/logout-admin', [LoginManualAdminSkripsiController::class, 'logout'])->name('logout.adminskripsi');
+
 Route::get('/admin/dashboard', [AdminSkripsiController::class, 'index'])->name('dashboard');
 Route::get('/admin/pengajuan-skripsi', [PengajuanSkripsiController::class, 'index'])->name('pengajuan.index');
 Route::get('/admin/pengajuan-skripsi/{id}', [PengajuanSkripsiController::class, 'show'])->name('pengajuan_skripsi.show');
@@ -49,16 +58,18 @@ Route::get('/admin/laporan', [LaporanSkripsiController::class, 'index'])->name('
 Route::get('/admin/laporan-cetak', [LaporanSkripsiController::class, 'cetakPDF'])->name('laporan.cetak');
 
 
-
 Route::middleware([])->group(function () {
+    Route::get('/login-mhs', [LoginManualMhsSkripsiController::class, 'index'])->name('login.mhs');
+    Route::post('/login-mhs', [LoginManualMhsSkripsiController::class, 'login'])->name('login.mhs.post');
+    Route::get('/dashboard-mhs', [LoginManualMhsSkripsiController::class, 'dashboard'])->name('dashboard.mhs');
+    Route::post('/logout-mhs', function () {
+    Session::flush();  
+    return redirect('/login-mhs')->with('success', 'Anda berhasil logout');
+})->name('logout.mhsskripsi');
 
     Route::get('/mahasiswa/dashboard', [MahasiswaPortalSkripsiController::class, 'dashboard'])->name('mahasiswa.dashboard');
-
     Route::get('/mahasiswa/riwayat', [MahasiswaPortalSkripsiController::class, 'riwayatskripsi'])->name('mahasiswa.riwayat');
-
     Route::get('/mahasiswa/ajukan', [MahasiswaPortalSkripsiController::class, 'ajukanForm'])->name('mahasiswa.ajukan.form');
-
     Route::post('/mahasiswa/ajukan', [MahasiswaPortalSkripsiController::class, 'ajukanStore'])->name('mahasiswa.ajukanstore');
 });
-
 require __DIR__.'/auth.php';
